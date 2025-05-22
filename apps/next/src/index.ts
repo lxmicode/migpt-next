@@ -61,9 +61,10 @@ class MiJiaEngine extends MiGPTEngine {
       await sleep(heartbeat);
     }
   }
-
+  // 与AI聊天
   async askAI(msg: IMessage): Promise<IReply> {
     const text = await ChatBot.chat(msg);
+    text = text.replace(/<think>[\s\S]*?<\/think>/g, '').trim()
     return { text };
   }
 }
